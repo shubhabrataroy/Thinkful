@@ -1,3 +1,3 @@
 Thinkful
 ========
-Some solutions from Thinkful Data Sciece course.
+Some solutions from Thinkful Data Science course.
