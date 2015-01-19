@@ -17,5 +17,4 @@ pca.fit(X)
 X = pca.transform(X)
 
 neigh = KNeighborsClassifier(n_neighbors=6)
-neigh.fit(X,y)
-neigh.predict([[1.1]])
+neigh.fit(X,y).predict(X)
