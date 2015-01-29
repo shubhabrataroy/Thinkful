@@ -13,6 +13,8 @@ print loansData['FICO.Range'][0:5]
 #cleaning up the columns
 loansData['Interest.Rate'] = loansData['Interest.Rate'].map(lambda x: x.rstrip('%'))
 loansData['Loan.Length'] = loansData['Loan.Length'].map(lambda x: x.rstrip('months'))
+#loansData[‘FICO.Score’] = [str(x) for x in loansData[‘FICO.Range’]] # another way
+#loansData[‘FICO.Score’]   =    loansData[‘FICO.Score’].map(lambda x: x[:3])
 
 #printing again to see if cleaning took place or not
 print loansData['Interest.Rate'][0:5]
