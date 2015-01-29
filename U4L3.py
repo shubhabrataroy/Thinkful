@@ -26,6 +26,13 @@ df['gender'] = pd.Categorical(df['sex'].tolist())
 gnb = GaussianNB()
 data = df[['actual','ideal','diff']]
 target = df['gender']
-y_pred = gnb.fit(data, target).predict(data)
+model = gnb.fit(data, target)
+y_pred = model.predict(data)
 print("Number of mislabeled points out of a total %d points: %d" %(data.shape[0], (target != y_pred).sum()))
 
+# Predict the sex for an actual weight of 145, an ideal weight of 160, and a diff of -15." 
+
+d = {'actual': 145, 'ideal': 160, 'diff': -15}
+df = pd.DataFrame(data=d, index=[1])
+pred = model.predict(df)
+print pred
