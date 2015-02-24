@@ -8,49 +8,46 @@ Created on Mon Dec  8 11:41:41 2014
 import sqlite3 as lite
 import pandas as pd
 import pandas.io.sql as psql
-import sys
 
 """ Connect to the database """
 con = lite.connect('/home/sroy/ThinkfulTest1.db')
 cur = con.cursor()
 
-# readlink -f foo.bar
-#cur = con.cursor()    
-#cur.execute('SELECT SQLITE_VERSION()')
-#data = cur.fetchone()
+populate_cities = """
+INSERT INTO cities (name, state) VALUES
+    ('New York City', 'NY'),
+    ('Boston', 'MA'),
+    ('Chicago', 'IL'),
+    ('Miami', 'FL'),
+    ('Dallas', 'TX'),
+    ('Seattle', 'WA'),
+    ('Portland', 'OR'),
+    ('San Francisco', 'CA'),
+    ('Los Angeles', 'CA');
+"""
+populate_weather = """
+INSERT INTO weather (city,year,warm_month,cold_month,average_high) VALUES
+    ('New York City',2013,'July','January',62),
+    ('Boston',2013,'July','January',59),
+    ('Chicago',2013,'July','January',59),
+    ('Miami',2013,'August','January',84),
+    ('Dallas',2013,'July','January',77),
+    ('Seattle',2013,'July','January',61),
+    ('Portland',2013,'July','December',63),
+    ('San Francisco',2013,'September','December',64),
+    ('Los Angeles',2013,'September','December',75);
+"""
 
-#with con:
-#  # From the connection, you get a cursor object. The cursor is what goes over the records that result from a query.
-#  cur = con.cursor()    
-#  cur.execute('SELECT SQLITE_VERSION()')
-#  # You're fetching the data from the cursor object. Because you're only fetching one record, you'll use the `fetchone()` method. If fetching more than one record, use the `fetchall()` method.
-#  data = cur.fetchone()
-#  # Finally, print the result.
-#  print "SQLite version: %s" % data
-#
-## Inserting rows by passing values directly to `execute()`
-#with con:
-#
-#    cur = con.cursor()
-#    cur.execute("INSERT INTO cities VALUES('Washington', 'DC')")
-#    cur.execute("INSERT INTO cities VALUES('Houston', 'TX')")
-#
-#with con:
-#    cur = con.cursor()    
-#    cur.execute("SELECT * FROM cities")
-#    rows = cur.fetchall()
+
 """ Create the cities and weather tables """
 cur.execute("DROP TABLE IF EXISTS cities")
 cur.execute("CREATE TABLE cities (name text, state text)")
-cur.execute("INSERT INTO cities VALUES('Washington', 'DC')")
-cur.execute("INSERT INTO cities VALUES('Houston', 'TX')")
-
-""" Insert data into the two tables """
 cur.execute("DROP TABLE IF EXISTS weather")
-cur.execute("CREATE TABLE weather (city text, year integer, warm_month text, cold_month text)")
-cur.execute("INSERT INTO weather VALUES('Washington', 2013, 'July', 'January')")
-cur.execute("INSERT INTO weather VALUES('Houston', 2013, 'July', 'January')")
+cur.execute("CREATE TABLE weather (city text,year integer,warm_month text,cold_month text,average_high integer)")
 
+""" Populate the tables """
+cur.execute(populate_weather)
+cur.execute(populate_cities)
 
 """ Load into pandas data-frame"""
 query_cities = "select * from cities"
@@ -64,9 +61,12 @@ weather.drop('city', axis=1, inplace=True)
 
 """ join two data frames """
 combined = pd.DataFrame.merge(cities,weather, how='inner', left_on = 'name', right_on = 'name')
-together = combined.apply(lambda x:'%s, %s' % (x['name'],x['state']),axis=1)
+
+""" pick the records where July is the warmest month """
+combined_july = combined[combined['warm_month'] == 'July']
 
 """ Print out the resulting city and state in a full sentence. For example The cities that are warmest in July are: Las Vegas, NV, Atlanta, GA """
+together = combined_july.apply(lambda x:'%s, %s' % (x['name'],x['state']),axis=1)
 print "cities that are warmest in July are:", ', '.join(together.tolist())
 
 """ Dynamic input to a query """
