@@ -23,4 +23,4 @@ select city from weather where warm_month = 'July';
 select city from weather where warm_month = 'July' and cold_month != 'January';
 
 -- The first two cities which were coldest in January
-select city from weather where cold_month = 'January' limit 2;
+select city from weather where cold_month = 'January' ORDER BY VALUES limit 2;
