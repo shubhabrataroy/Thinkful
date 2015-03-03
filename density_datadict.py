@@ -5,7 +5,6 @@ density_dict = collections.defaultdict(int)
 
 with open('/home/sroy/Desktop/Thinkful/lecz-urban-rural-population-land-area-estimates-v2-csv/lecz-urban-rural-population-land-area-estimates_continent-90m.csv','rU') as inputFile:
     header = next(inputFile)
-
     for line in inputFile:
         line = line.rstrip().split(',')
         line[5] = int(line[5])
