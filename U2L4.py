@@ -1,6 +1,6 @@
 import pandas as pd
-#import numpy as np 
 import statsmodels.api as sm
+import matplotlib.pyplot as plt
 
 ##### Same as before we did for linear regression
 
@@ -21,10 +21,10 @@ loansData['FICO.Score'] = loansData['FICO.Range']
 print loansData['FICO.Score'][0:5]
 A =loansData['FICO.Score'].tolist()
 FICO=[] #declare an empty array
-for j in range(len(A)):   #for j in between 0 to len(A)
-  B = A[j].split("-")     #split each sub-array on - and save it to B
-  C = float(B[0])           #convert the string to int, using only the first value
-  FICO.append(C)          #append each C to the empty array, using first value
+for j in range(len(A)):   
+  B = A[j].split("-")    
+  C = float(B[0])           
+  FICO.append(C)        
 loansData['FICO.Score']=FICO
 
 ##### Now the logistic part
@@ -43,3 +43,34 @@ logit = sm.Logit(y, X)
 result = logit.fit()
 coeff = result.params
 print coeff
+
+def logistic_function(FicoScore, LoanAmount,coeff):
+    """ p(x) = 1/(1 + e^(intercept + 0.087423(FicoScore) − 0.000174(LoanAmount)) """
+    prob = 1/(1+exp(coeff[0]+coeff[2]*FicoScore+coeff[1]*LoanAmount))
+    if prob > 0.7:
+        p = 1
+    else:
+        p = 0
+    return prob, p
+    
+prob = logistic_function(720, 10000,coeff)[0]
+decision = logistic_function(720, 10000,coeff)[1]
+    
+## plotting: lets test different FICO score for 10,000 USD loan
+Fico = range(550, 950, 10)
+p_plus = []
+p_minus = []
+p = []
+for j in Fico:
+    p_plus.append(1/(1+exp(coeff[0]+coeff[2]*j+coeff[1]*10000)))
+    p_minus.append(1/(1+exp(-coeff[0]-coeff[2]*j-coeff[1]*10000)))
+    p.append(logistic_function(j, 10000,coeff)[1])
+
+plt.plot(Fico, p_plus, label = 'p(x) = 1/(1+exp(b+mx))', color = 'blue')
+plt.hold(True)
+plt.plot(Fico, p_minus, label = 'p(x) = 1/(1+exp(-b-mx))', color = 'green')    
+plt.hold(True)
+plt.plot(Fico, p, 'ro', label = 'Decision for 10000 USD')
+plt.legend(loc='upper right')
+plt.xlabel('Fico Score')
+plt.ylabel('Probability and decision, yes = 1, no = 0')
