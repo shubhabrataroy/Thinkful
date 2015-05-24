@@ -25,9 +25,9 @@ loansData['FICO.Score'] = loansData['FICO.Range']
 print loansData['FICO.Score'][0:5]
 A =loansData['FICO.Score'].tolist()
 #print (A)
-FICO=[] #declare an empty array
 # loandata['FICO.Score'] = loandata['FICO.Range'].map(lambda x: (x.split('-')))
 # loansData['FICO.Score'] = loansData['FICO.Score'].map(lambda x: int(x[0]))
+FICO=[] #declare an empty array
 loansData.columns()
 for j in range(len(A)):   #for j in between 0 to len(A)
   B = A[j].split("-")     #split each sub-array on - and save it to B
