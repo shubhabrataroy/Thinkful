@@ -54,9 +54,9 @@ plot(centroids1[:,0],centroids1[:,1],'sg',markersize=8)
 show()
 
 ## check all clusters:
+cluster1 = whiten(cluster1)
 average_distance = []
 for k in range(1,11):
-    cluster1 = whiten(cluster1)
     centroids1,dist1 = kmeans(cluster1,k) # you can calculate the eucledean distance in the next line
     idx1,idxdist1 = vq(cluster1,centroids1)
     avg_dist = np.mean(idxdist1)
