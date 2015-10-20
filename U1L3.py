@@ -73,3 +73,10 @@ print "cities that are warmest in July are:", ', '.join(together.tolist())
 year = 2013
 query_weather_dynamic = " SELECT * FROM weather WHERE year = " + str(int(year))
 weather_dynamic = psql.frame_query(query_weather_dynamic,con)
+
+
+############################
+z = zip(combined_july['name'], combined_july['state'])
+
+for j in range(len(z)):
+    print 'Number', (j+1), 'city having warmest month in July is', z[j][0], z[j][1]
