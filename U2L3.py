@@ -28,7 +28,7 @@ A =loansData['FICO.Score'].tolist()
 # loandata['FICO.Score'] = loandata['FICO.Range'].map(lambda x: (x.split('-')))
 # loansData['FICO.Score'] = loansData['FICO.Score'].map(lambda x: int(x[0]))
 FICO=[] #declare an empty array
-loansData.columns()
+#loansData.columns()
 for j in range(len(A)):   #for j in between 0 to len(A)
   B = A[j].split("-")     #split each sub-array on - and save it to B
   #C = int(B[0], B[1])    #convert the str to int
