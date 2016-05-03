@@ -1,3 +1,9 @@
+"""
+It seems I found the error. It related to a version of a python package that runs on windows. Please do the following from cmd:
+pip install https://github.com/pydata/patsy/archive/master.zip
+It would uodate the package called patsy after this type pip freeze and check the version of patsy. If it is 0.4.1 or 0.4.1-dev it should be fine. After that just restart anaconda or whatever GUI you have been using and execute the code.
+"""
+
 import numpy as np
 import pandas as pd 
 import statsmodels.formula.api as smf
