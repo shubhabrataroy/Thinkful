@@ -20,6 +20,6 @@ print(df.dot(df2))
 
 n = 3 # number of iterations or dot products
 df2=df
-for i in range(n): df2 = df2.dot(df2)
+for i in range(n): df2 = df2.dot(df)
 print('Transition matric after' + str(n) + 'transitions:')
 print(df2)
