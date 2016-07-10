@@ -15,6 +15,17 @@ actors = {
 for j in actors.keys():
     print j, 'played the role of', actors[j]
     
+##################################################################
+
+from collections import OrderedDict
+actors=OrderedDict()
+actors['Kyle MacLachlan']='Dale Cooper'
+actors['Sheryl Lee']='Laura Palmer'
+actors['Lara Flynn Boyle']='Donna Hayward'
+actors['Sherilyn Fenn']='Audrey Horne'
+    
+for j in actors.keys():
+    print j, 'played the role of', actors[j]
     
 ##################################################################
     
