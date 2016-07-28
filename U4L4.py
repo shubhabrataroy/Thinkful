@@ -24,11 +24,8 @@ iris_df['target_flower'].replace(1, 'versicolor', inplace = True)
 iris_df['target_flower'].replace(2, 'virginica', inplace = True)
 
 neigh = KNeighborsClassifier()
-X = [[x] for x in iris_df['sepal_length'].tolist()]
-y = iris_df['sepal_width'].tolist()
+X = np.array([[x] for x in iris_df['sepal_length'].tolist()])
+y = np.array(iris_df['sepal_width'].tolist()).astype(int)
 neigh.fit(X, y)
 
-test_y = 2.7645599698683703
-test_x = 6.031175522438984
-
-print neigh.predict([[test_y], [test_x]])
+print neigh.predict([5.1])
