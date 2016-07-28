@@ -34,5 +34,6 @@ print("Number of mislabeled points out of a total %d points: %d" %(data.shape[0]
 
 d = {'actual': 145, 'ideal': 160, 'diff': -15}
 df = pd.DataFrame(data=d, index=[1])
+df = df[['actual','ideal', 'diff']]
 pred = model.predict(df)
 print pred
