@@ -8,6 +8,7 @@ Created on Mon Dec  8 11:41:41 2014
 import sqlite3 as lite
 import pandas as pd
 import pandas.io.sql as psql
+import sys
 
 """ Connect to the database """
 con = lite.connect('/home/sroy/ThinkfulTest1.db')
@@ -70,10 +71,11 @@ together = combined_july.apply(lambda x:'%s, %s' % (x['name'],x['state']),axis=1
 print "cities that are warmest in July are:", ', '.join(together.tolist())
 
 """ Dynamic input to a query """
-year = 2013
+year = sys.argv[1] # 2013
 query_weather_dynamic = " SELECT * FROM weather WHERE year = " + str(int(year))
 weather_dynamic = psql.frame_query(query_weather_dynamic,con)
 
+## python U1L3.py 2013
 
 ############################
 z = zip(combined_july['name'], combined_july['state'])
