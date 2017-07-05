@@ -1,0 +1,195 @@
+98% chance of testing positive for someone with Thripshaw's disease
+
+10% chance of false positive -> non sufferer
+
+0.5% of population are sufferers
+
+
+
+P(A) = .005  => the probability disease will be present in any particular person
+
+
+
+P(~A) = 1-.005 = .995  => the probability that the disease will not be present in any particular person
+
+
+
+P(B | A) = .98   => the probability that the test will yield a positive test result and the disease is present
+
+
+
+P(~B | A) = 1-.98=.02   => the probability that the test will yield a negative result and the disease is present
+
+
+
+P(B | ~A) = .10   => false positive -> test yields positive but the disease is not present
+
+
+
+P(~B | ~A) 1-.10 = .90 => probability that the test will yield a negative result if the disease is not present
+
+
+
+
+
+
+
+
+
+1. Calculate the probability that the test will be positive.
+
+P(B)   => probability that test result is positive
+
+       => can use Bayes theorem for formula
+
+
+
+P(B) = [P(A) * P(B | A)  +  P(~A) * P(B | ~A)]
+
+P(B) = (.005 * .98) + (.995 * .10)
+
+P(B) =  .0049 + .0995
+
+P(B) = 0.1044
+
+P(B) = 10.44% that test results return positive
+
+
+
+
+
+
+
+2. Calculate the probability that the test will Correctly diagnose a sufferer of Thripshaw's.
+
+
+
+P(A | B) => probability disease is present if the test results are positive
+
+
+
+P(A | B) = P(B | A) * P(A) / P(B)
+
+P(A | B) = (.98 * .005) / 0.1044
+
+P(A | B) = .0049 / 0.1044
+
+P(A | B) = .047
+
+P(A | B) = 4.7% that test returns true positive
+
+
+
+
+
+
+
+3. Calculate the probability that the test will Correctly identify a non-sufferer of Thripshaw's
+
+
+
+P(~A | ~B) => probability that disease is not present if the test results are negative, true negative
+
+
+
+P(~B) = 1 - P(B)
+
+P(~B) = 1 - 0.1044
+
+P(~B) = .8956
+
+
+
+P(~A | ~B) = P(~B | ~A) * P(~A)  /  P(~B)
+
+P(~A | ~B) = (.90 * .995)  /  .8956
+
+P(~A | ~B) = .8955 / .8956
+
+P(~A | ~B) = .9998
+
+P(~A | ~B) = 99.98% that test returns true negative
+
+
+
+
+
+
+
+
+
+
+
+4. Calculate the probability that the test will Misclassify the person
+
+P(A | ~B) + P(~A | B)
+
+
+
+P(A | ~B) = P(~B | A) * P(A)  / P(~B)
+
+P(A | ~B) = (.02 * .005) / .8956
+
+P(A | ~B) = .0001 / .8956
+
+P(A | ~B) = 0.00011
+
+P(A | ~B) = 0.011% that disease is present if test returns negative
+
+
+
+
+
+P(~A | B) = P(B | ~A) * P(~A) / P(B)
+
+P(~A | B) = (.10 * .995) / .1044
+
+P(~A | B) = .0995 / .1044
+
+P(~A | B) = .9531
+
+P(~A | B) = 95.31% that disease is not present if test results return negative
+
+
+
+0.011% + 95.31% = 95.32% chance that test will misclassify you
+
+
+
+
+
+For simplicity let:
+D1: The Event of Monty Hall opening door 1.
+D2: The Event of Monty Hall opening door 2.
+D3: The Event of Monty Hall opening door 3.
+C1: The Event of finding the car behind door 1.
+C2: The Event of finding the car behind door 2.
+C3: The Event of finding the car behind door 3.
+
+
+The prior probability of Monty Hall finding a car behind any door is obviously p(C#)=1/3, where P(C1)=P(C2)=P(C3)
+
+Assuming you took the same decision as in the standard problem and you chose the door No.1.
+
+So let's focus here on the 3rd Door!
+
+The probability that Monty Hall opens door No.3. given the car is behind door No.1 is:
+p(D3|C1) = 1/2 
+
+We know also that Monty Hall will never open the door which has the car so the probability that Monty Hall opens door No.3.  given that the car is behind door No.3. is: 
+p(D3|C3) = 0 
+
+Contrary, the probability that Monty Hall opens door No.3. given the car is behind  door No.2. is: 
+p(D3|C2) = 1 
+
+
+Now to the Bayes's part: 
+
+p(C1|D3)= p(D3|C1) * p(C1) / p(D3)
+= (1/2 * 1/3) / (1/2)
+= 1/3
+
+p(C2|D3)= p(D3|C2) * p(C2) / p(D3)
+= (1 * 1/3) / (1/2)
+= 2/3
+
