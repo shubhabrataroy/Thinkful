@@ -33,7 +33,7 @@ p(C2|D3)= p(D3|C2) * p(C2) / p(D3)
 = (1 * 1/3) / (1/2)
 = 2/3
 
-which thanks to Jeff Jo's comment can be even reduced to:
+which can be even reduced to:
   = 1 / [p(D3|C1)+1] = 1/(1/2+1) = 2/3
 
 therefore, if you choose No.1. initially and Monty Hall opens door No.3. to reveal that it has no car, the probability of a car standing behind door No.2. is 2/3. Therefore you should ALWAYS switch your selection of your initial door.
