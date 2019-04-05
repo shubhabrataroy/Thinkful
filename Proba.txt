@@ -1,0 +1,77 @@
+98% chance of testing positive for someone with Thripshaw's disease
+10% chance of false positive -> non sufferer
+0.5% of population are sufferers
+
+P(A) = .005  => the probability disease will be present in any particular person
+
+P(~A) = 1-.005 = .995  => the probability that the disease will not be present in any particular person
+
+P(B | A) = .98   => the probability that the test will yield a positive test result and the disease is present
+
+P(~B | A) = 1-.98=.02   => the probability that the test will yield a negative result and the diease is present
+
+P(B | ~A) = .10   => false positive -> test yields positive but the disease is not present
+
+P(~B | ~A) 1-.10 = .90 => probability that the test will yield a negative result if the disease is not present
+
+
+
+
+1. Calculate the probability that the test will be positive.
+P(B)   => probability that test result is positve
+       => can use Bayes theorem for formula
+
+P(B) = [P(A) * P(B | A)  +  P(~A) * P(B | ~A)]
+P(B) = (.005 * .98) + (.995 * .10)
+P(B) =  .0049 + .0995
+P(B) = 0.1044
+P(B) = 10.44% that test results return positive
+
+
+
+2. Calculate the probability that the test will Correctly diagnose a sufferer of Thripshaw's.
+
+P(A | B) => probability disease is present if the test results are positive
+
+P(A | B) = P(B | A) * P(A) / P(B)
+P(A | B) = (.98 * .005) / 0.1044
+P(A | B) = .0049 / 0.1044
+P(A | B) = .047
+P(A | B) = 4.7% that test returns true positive
+
+
+
+3. Calculate the probability that the test will Correctly identify a non-sufferer of Thripshaw's
+
+P(~A | ~B) => probability that disease is not present if the test results are negative, true negative
+
+P(~B) = 1 - P(B)
+P(~B) = 1 - 0.1044
+P(~B) = .8956
+
+P(~A | ~B) = P(~B | ~A) * P(~A)  /  P(~B)
+P(~A | ~B) = (.90 * .995)  /  .8956
+P(~A | ~B) = .8955 / .8956
+P(~A | ~B) = .9998
+P(~A | ~B) = 99.98% that test returns true negative
+
+
+
+
+4. Calculate the probability that the test will Misclassify the person
+P(A | ~B) + P(~A | B)
+
+P(A | ~B) = P(~B | A) * P(A)  / P(~B)
+P(A | ~B) = (.02 * .005) / .8956
+P(A | ~B) = .0001 / .8956
+P(A | ~B) = 0.00011
+P(A | ~B) = 0.011% that disease is present if test returns negative
+
+
+P(~A | B) = P(B | ~A) * P(~A) / P(B)
+P(~A | B) = (.10 * .995) / .1044
+P(~A | B) = .0995 / .1044
+P(~A | B) = .9531
+P(~A | B) = 95.31% that disease is not present if test results return negative
+
+0.011% + 95.31% = 95.32% chance that test will misclassify you
